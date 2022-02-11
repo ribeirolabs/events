@@ -1,0 +1,28 @@
+{
+  "name": "@ribeirolabs/events",
+  "version": "1.0.0",
+  "description": "Make it easier to dispatch/listen for custom and native browser events",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ribeirolabs/events.git"
+  },
+  "keywords": [
+    "events",
+    "listener",
+    "browser",
+    "window",
+    "dispathEvent",
+    "addEventListener",
+    "customEvent"
+  ],
+  "author": "Igor Ribeiro <igor.ribeiro.plus@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ribeirolabs/events/issues"
+  },
+  "homepage": "https://github.com/ribeirolabs/events#readme"
+}
