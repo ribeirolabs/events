@@ -10,6 +10,7 @@ jobs:
           node-version: '16'
       - run: npm install
       - run: npm run test:ci
+      - run: npm run build
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
