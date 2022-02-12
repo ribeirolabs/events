@@ -7,6 +7,8 @@ Type safe listener for custom/native events and dispatcher for custom events
 ### Listen/Unlisten
 
 ```js
+import { listenEvent } from '@ribeirolabs/events';
+
 // adds event listener
 const unlisten = listenEvent('hashchange', (e) => console.log(e.name));
 
@@ -17,14 +19,19 @@ unlisten();
 You can also use `unlistenEvent`.
 
 ```js
+import { unlistenEvent } from '@ribeirolabs/events';
+
 // removes event listener
 unlistenEvent('hashchange');
 ```
-#### React
+
+### React
 
 You can use the hook `useEvent`. It automatically adds the listener on mount and remove it on unmount.
 
 ```js
+import { useEvent } from '@ribeirolabs/events/react';
+
 function Component() {
   const listener = useCallback((event) => {
     console.log(event.name);
@@ -34,10 +41,11 @@ function Component() {
 }
 ```
 
-
 ### Dispath (custom events)
 
 ```js
+import { listenEvent, dispatchCustomEvent } from '@ribeirolabs/events';
+
 listenEvent('my-event', (event) => {
   console.log(event.detail.message);
 });

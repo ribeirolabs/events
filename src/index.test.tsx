@@ -1,6 +1,4 @@
-import { render } from "@testing-library/react";
-import React from "react";
-import { dispatchCustomEvent, listenEvent, useEvent } from ".";
+import { dispatchCustomEvent, listenEvent } from ".";
 
 declare global {
   interface Events {
@@ -50,32 +48,6 @@ it("should remove listener", () => {
   expect(listener).toBeCalledTimes(1);
 
   unlisten();
-
-  dispatchCustomEvent("test", {
-    message: "it works",
-  });
-
-  expect(listener).toBeCalledTimes(1);
-});
-
-it("should add/remove listener using the hook", () => {
-  const listener = jest.fn();
-
-  function Component() {
-    useEvent("test", listener);
-
-    return null;
-  }
-
-  const { unmount } = render(<Component />);
-
-  dispatchCustomEvent("test", {
-    message: "it works",
-  });
-
-  expect(listener).toBeCalledTimes(1);
-
-  unmount();
 
   dispatchCustomEvent("test", {
     message: "it works",

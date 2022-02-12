@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-
 declare global {
   interface Events {}
 }
 
-type EventName = keyof Events | keyof WindowEventMap;
+export type EventName = keyof Events | keyof WindowEventMap;
 
-type EventHandler<E extends string> = (
+export type EventHandler<E extends string> = (
   event: E extends keyof Events
     ? CustomEvent<Events[E]>
     : E extends keyof WindowEventMap
@@ -35,13 +33,4 @@ export function dispatchCustomEvent<E extends keyof Events>(
   detail: CustomEventInit<Events[E]>["detail"]
 ) {
   window.dispatchEvent(new CustomEvent(event, { detail }));
-}
-
-export function useEvent<E extends string>(
-  event: EventName | E,
-  handler: EventHandler<E>
-): void {
-  useEffect(() => {
-    return listenEvent(event, handler);
-  }, [event, handler]);
 }
