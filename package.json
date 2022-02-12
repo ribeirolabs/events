@@ -20,7 +20,11 @@
   "release": {
     "branches": [
       "main",
-      "beta"
+      {
+        "name": "beta",
+        "channel": "beta",
+        "prerelease": true
+      }
     ],
     "pkgRoot": "dist"
   },
