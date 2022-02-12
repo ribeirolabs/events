@@ -1,6 +1,6 @@
 {
   "name": "@ribeirolabs/events",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "Type safe listener for custom/native events and dispatcher for custom events",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,11 +14,12 @@
     "build:lib": "esbuild src/index.ts --format=cjs --outfile=dist/index.js",
     "build:types": "tsc",
     "test": "jest --watch",
-    "test:ci": "jest"
+    "test:ci": "jest",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ribeirolabs/events.git"
+    "url": "https://github.com/ribeirolabs/events.git"
   },
   "keywords": [
     "events",
@@ -46,8 +47,10 @@
     "jest": "27.5.1",
     "npm-run-all": "4.1.5",
     "rimraf": "3.0.2",
+    "semantic-release-cli": "5.4.4",
     "ts-jest": "27.1.3",
-    "typescript": "4.5.5"
+    "typescript": "4.5.5",
+    "semantic-release": "^19.0.2"
   },
   "peerDependencies": {
     "react": "^17.0.0",
