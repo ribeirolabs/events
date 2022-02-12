@@ -2,25 +2,23 @@
   "name": "@ribeirolabs/events",
   "version": "0.0.0-development",
   "description": "Type safe listener for custom/native events and dispatcher for custom events",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
+    "postbuild": "cp package.json dist",
     "build": "run-p build:*",
-    "build:lib": "esbuild src/index.ts --format=cjs --outfile=dist/index.js",
+    "build:lib": "node build.js",
     "build:types": "tsc",
     "test": "jest --watch",
     "test:ci": "jest",
     "semantic-release": "semantic-release"
   },
   "release": {
-    "branches": [
-      "main"
-    ]
+    "pkgRoot": "dist"
   },
   "publishConfig": {
     "access": "public"
