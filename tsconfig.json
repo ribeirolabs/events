@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["./src/*"]
+    },
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "allowJs": false,
+    "jsx": "react",
+    "declarationDir": "dist",
+    "outDir": "dist",
+    "declarationMap": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
