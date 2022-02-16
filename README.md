@@ -4,7 +4,7 @@ Type safe listener for custom/native events and dispatcher for custom events
 
 ## Usage
 
-### Listen/Unlisten
+### listenEvent `(event, handler) => unlistenEvent`
 
 ```js
 import { listenEvent } from '@ribeirolabs/events';
@@ -16,7 +16,9 @@ const unlisten = listenEvent('hashchange', (e) => console.log(e.name));
 unlisten();
 ```
 
-You can also use `unlistenEvent`.
+### unlistenEvent `(event) => void`
+
+You can also use it to unlisten a specific event.
 
 ```js
 import { unlistenEvent } from '@ribeirolabs/events';
@@ -25,9 +27,25 @@ import { unlistenEvent } from '@ribeirolabs/events';
 unlistenEvent('hashchange');
 ```
 
-### React
+### dispatchCustomEvent `(name, detail) => void`
 
-You can use the hook `useEvent`. It automatically adds the listener on mount and remove it on unmount.
+```js
+import { listenEvent, dispatchCustomEvent } from '@ribeirolabs/events';
+
+listenEvent('my-event', (event) => {
+  console.log(event.detail.message); // it works
+});
+
+dispatchCustomEvent('my-event', {
+  message: 'it works',
+});
+```
+
+## React
+
+### useEvent `(event, handler) => void`
+
+This hook automatically adds the listener on mount and removes it on unmount.
 
 ```js
 import { useEvent } from '@ribeirolabs/events/react';
@@ -41,23 +59,53 @@ function Component() {
 }
 ```
 
-### Dispath (custom events)
+## Browser
 
-```js
-import { listenEvent, dispatchCustomEvent } from '@ribeirolabs/events';
+### index.browser.js
 
-listenEvent('my-event', (event) => {
-  console.log(event.detail.message);
-});
+It adds a global `ribeirolabs.events` with all the methods.
 
-dispatchCustomEvent('my-event', {
-  message: 'it works',
-});
+```html
+<script src="https://unpkg.com/@ribeirolabs/events/index.browser.js"></script>
+
+<script>
+  ribeirolabs.events.listenEvent('my-event', (event) => {
+    console.log(event.detail.message) // it works!
+  });
+
+  ribeirolabs.events.dispatchCustomEvent('my-event', {
+    message: 'it works!',
+  });
+
+  ribeirolabs.events.unlistenEvent();
+</script>
 ```
 
-### Typescript
+### index.mjs
 
-You can type your custom events, just declare a global `Events` interface. We suggest that you create an `events.d.ts` file.
+To work with modules.
+
+```html
+<script type="module">
+  import { listenEvent, dispatchCustomEvent, unlistenEvent } from "https://unpkg.com/@ribeirolabs/events/index.mjs";
+
+  listenEvent('my-event', (event) => {
+    console.log(event.detail.message) // it works!
+  });
+
+  dispatchCustomEvent('my-event', {
+    message: 'it works!',
+  });
+
+  unlistenEvent();
+</script>
+```
+
+
+## Typescript
+
+You can type your custom events, just declare a global `Events` interface. We
+suggest that you create an `events.d.ts` file inside the root folder.
 
 ```ts
 interface Events {
@@ -66,3 +114,6 @@ interface Events {
   };
 };
 ```
+
+Now `dispatchCustomEvent` will be typed based on that interface, and the other
+methods will also consider these events.

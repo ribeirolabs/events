@@ -4,38 +4,41 @@ function exit() {
   process.exit(1);
 }
 
-build({
+const config = {
   entryPoints: ["./src/index.ts"],
-  outfile: "./dist/index.js",
-  logLevel: "info",
-  format: "cjs",
   bundle: true,
+  logLevel: "info",
+};
+
+const browser = {
+  ...config,
+  platform: "browser",
+  minify: true,
+};
+
+build({
+  ...config,
+  outfile: "./dist/index.js",
+  format: "cjs",
 }).catch(exit);
 
 build({
-  entryPoints: ["./src/index.ts"],
+  ...browser,
   outfile: "./dist/index.browser.js",
-  logLevel: "info",
   format: "iife",
-  globalName: "events",
-  platform: "browser",
-  minify: true,
+  globalName: "ribeirolabs.events",
 }).catch(exit);
 
 build({
-  entryPoints: ["./src/index.ts"],
+  ...browser,
   outfile: "./dist/index.mjs",
-  logLevel: "info",
   format: "esm",
-  platform: "browser",
-  minify: true,
 }).catch(exit);
 
 build({
+  ...config,
   entryPoints: ["./src/react/index.ts"],
   outfile: "./dist/react/index.js",
-  logLevel: "info",
   format: "cjs",
-  bundle: true,
   external: ["react", "."],
 }).catch(exit);
