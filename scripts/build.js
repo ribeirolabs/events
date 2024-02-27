@@ -19,7 +19,7 @@ const browser = {
 build({
   ...config,
   outfile: "./dist/index.js",
-  format: "cjs",
+  format: "esm",
 }).catch(exit);
 
 build({
@@ -31,22 +31,22 @@ build({
 
 build({
   ...browser,
-  outfile: "./dist/index.mjs",
-  format: "esm",
+  outfile: "./dist/index.cjs",
+  format: "cjs",
 }).catch(exit);
 
 build({
   ...config,
   entryPoints: ["./src/react/index.ts"],
   outfile: "./dist/react/index.js",
-  format: "cjs",
+  format: "esm",
   external: ["react", "."],
 }).catch(exit);
 
 build({
   ...config,
   entryPoints: ["./src/react/index.ts"],
-  outfile: "./dist/react/index.mjs",
-  format: "esm",
+  outfile: "./dist/react/index.cjs",
+  format: "cjs",
   external: ["react", "."],
 }).catch(exit);
