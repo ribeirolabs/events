@@ -42,3 +42,11 @@ build({
   format: "cjs",
   external: ["react", "."],
 }).catch(exit);
+
+build({
+  ...config,
+  entryPoints: ["./src/react/index.ts"],
+  outfile: "./dist/react/index.mjs",
+  format: "esm",
+  external: ["react", "."],
+}).catch(exit);
