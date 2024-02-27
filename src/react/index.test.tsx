@@ -4,7 +4,7 @@ import { useEvent } from ".";
 import { dispatchCustomEvent } from "..";
 
 declare global {
-  interface Events {
+  interface CustomEvents {
     test: {
       message: string;
     };

@@ -1,15 +1,15 @@
 declare global {
-  interface Events {}
+  interface CustomEvents {}
 }
 
-export type EventName = keyof Events | keyof WindowEventMap;
+export type EventName = keyof CustomEvents | keyof WindowEventMap;
 
 export type EventHandler<E extends string> = (
-  event: E extends keyof Events
-    ? CustomEvent<Events[E]>
+  event: E extends keyof CustomEvents
+    ? CustomEvent<CustomEvents[E]>
     : E extends keyof WindowEventMap
-    ? WindowEventMap[E]
-    : Event
+      ? WindowEventMap[E]
+      : Event
 ) => void;
 
 export function listenEvent<E extends string>(
@@ -28,9 +28,9 @@ export function unlistenEvent<E extends string>(
   window.removeEventListener(event, handler);
 }
 
-export function dispatchCustomEvent<E extends keyof Events>(
+export function dispatchCustomEvent<E extends keyof CustomEvents>(
   event: E,
-  detail: CustomEventInit<Events[E]>["detail"]
+  detail: CustomEventInit<CustomEvents[E]>["detail"]
 ) {
   window.dispatchEvent(new CustomEvent(event, { detail }));
 }
